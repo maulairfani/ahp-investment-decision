@@ -50,33 +50,33 @@ except:
         'Pilih saham untuk alternatif AHP!',
         ticker_code, format_func=format_func)
 
-if st.button('Save'):
 
-    # Save selected alternative tickers to JSON file
-    with open("data/temps/alternatives.json", "w") as f:
-        json.dump(alternatives, f)
 
-    # Get alternative data
-    df_alternatives = get_alternatives_data(alternatives)
+# Save selected alternative tickers to JSON file
+with open("data/temps/alternatives.json", "w") as f:
+    json.dump(alternatives, f)
 
-    # Write alternative data to CSV file
-    if len(alternatives) >= 1:
-        df_alternatives.to_csv("data/temps/Alternatives.csv", index=False)
+# Get alternative data
+df_alternatives = get_alternatives_data(alternatives)
 
-    # Generate and save sector DataFrame to Excel file
-    df_sector = pd.DataFrame(columns=sector_pilihan, index=sector_pilihan)
-    np.fill_diagonal(df_sector.values, 1)
-    df_sector.to_excel("data/temps/Sector.xlsx")
+# Write alternative data to CSV file
+if len(alternatives) >= 1:
+    df_alternatives.to_csv("data/temps/Alternatives.csv", index=False)
 
-    # Check for incomplete data
-    not_eligible = df_alternatives[df_alternatives.apply(lambda x: '-' in x.values or x.isna().any(), axis=1)]['Ticker Code'].tolist()
+# Generate and save sector DataFrame to Excel file
+df_sector = pd.DataFrame(columns=sector_pilihan, index=sector_pilihan)
+np.fill_diagonal(df_sector.values, 1)
+df_sector.to_excel("data/temps/Sector.xlsx")
 
-    st.write(df_alternatives)
+# Check for incomplete data
+not_eligible = df_alternatives[df_alternatives.apply(lambda x: '-' in x.values or x.isna().any(), axis=1)]['Ticker Code'].tolist()
 
-    # Show message based on data completeness
-    if not_eligible:
-        st.error(f'Silahkan ganti {not_eligible} karena data tidak lengkap!')
-    elif len(alternatives) < 1:
-        st.warning("Silahkan pilih alternatif terlebih dahulu")
-    else:
-        st.success('Data berhasil tersimpan!')
+st.write(df_alternatives)
+
+# Show message based on data completeness
+if not_eligible:
+    st.error(f'Silahkan ganti {not_eligible} karena data tidak lengkap!')
+elif len(alternatives) < 1:
+    st.warning("Silahkan pilih alternatif terlebih dahulu")
+else:
+    st.success('Data berhasil tersimpan!')
