@@ -17,6 +17,6 @@ st.image("data/skala.png", caption="Skala Pembobotan Kriteria AHP")
 
 st.subheader("Kriteria AHP")
 st.markdown("Oke, jadi di DSS ini kita akan mempertimbangkan kriteria-kriteria penting 🏆 dalam memilih suatu saham, yaitu:")
-st.image("data/ahp.drawio.png")
+st.image("data/ahp.drawio.jpg")
 
 
