@@ -69,7 +69,7 @@ st.divider()
 st.subheader("Matriks Perbandingan Kriteria")
 
 st.markdown("**Input Matriks**")
-col1_1, col1_2, col1_3 = st.columns([6,0.3,6])
+col1_1, col1_2, col1_3 = st.columns([4,0.3,6])
 
 for i in range(len(df)):
     for j in range(i+1, len(df)):
