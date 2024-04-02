@@ -5,7 +5,7 @@ from utils import process
 
 st.title("Kriteria Utama🚩")
 st.markdown("Berikut adalah penjelasan faktor-faktor utama yang kami pertimbangkan dalam sistem dukungan keputusan kami untuk membantu Anda menentukan saham terbaik. Kami menggunakan metode 'Analytical Hierarchy Process' (AHP) dan mempertimbangkan faktor-faktor berikut : **Sector**, **Index**, **Size**, **Quality**, **Value** dan **Growth**. Masing-masing faktor memiliki peran dan pertimbangan yang berbeda yang secara keseluruhan akan memberikan penilaian dan rekomendasi terbaik untuk Anda.")
-df = pd.read_excel("data/temps/level0.xlsx", index_col="Unnamed: 0")
+df = pd.read_excel("./data/temps/level0.xlsx", index_col="Unnamed: 0")
 criterias = df.columns
 np.fill_diagonal(df.values, 1)
 
@@ -73,7 +73,7 @@ for i in range(len(df)):
             df.iloc[i, j] = skala
             df.iloc[j, i] = 1/skala
 
-        df.to_excel("data/temps/level0.xlsx")
+        df.to_excel("./data/temps/level0.xlsx")
 
 st.divider()
 st.subheader("Matriks Perbandingan Kriteria")
@@ -82,7 +82,7 @@ st.table(df)
 
 st.subheader("Matriks Nilai Kriteria")
 df_pairwise, ci, ri, cr = process(df)
-df_pairwise.to_excel("data/result/Level0.xlsx")
+df_pairwise.to_excel("./data/result/Level0.xlsx")
 st.table(df_pairwise)
 
 consistency = pd.DataFrame({"Value": [ci, ri, cr]},

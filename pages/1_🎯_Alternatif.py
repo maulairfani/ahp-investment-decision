@@ -6,14 +6,14 @@ import json
 
 ticker_code, name = get_all_tickers_and_name()
 df_ticker = pd.DataFrame({'ticker': ticker_code, 'name': name})
-df_sector = pd.read_csv("data/sector.csv")
+df_sector = pd.read_csv("./data/sector.csv")
 sectors = list(df_sector['sector'].unique())
 
 # Load existing data from JSON files
-with open("data/temps/alternatives.json", "r") as f:
+with open("./data/temps/alternatives.json", "r") as f:
     default_ticker = json.load(f)
 
-with open('data/temps/sector_terpilih.json', 'r') as f:
+with open('./data/temps/sector_terpilih.json', 'r') as f:
     sector_pilihan = json.load(f)
 
 st.title("Pilih Saham Alternatif 🎯")
@@ -25,7 +25,7 @@ sector_pilihan = st.multiselect(
     default=sector_pilihan)
 
 # Save selected sectors to JSON file
-with open('data/temps/sector_terpilih.json', 'w') as f:
+with open('./data/temps/sector_terpilih.json', 'w') as f:
     json.dump(sector_pilihan, f)
 
 # Filter ticker DataFrame based on selected sectors
@@ -53,7 +53,7 @@ except:
 
 
 # Save selected alternative tickers to JSON file
-with open("data/temps/alternatives.json", "w") as f:
+with open("./data/temps/alternatives.json", "w") as f:
     json.dump(alternatives, f)
 
 # Get alternative data
@@ -61,12 +61,12 @@ df_alternatives = get_alternatives_data(alternatives)
 
 # Write alternative data to CSV file
 if len(alternatives) >= 1:
-    df_alternatives.to_csv("data/temps/Alternatives.csv", index=False)
+    df_alternatives.to_csv("./data/temps/Alternatives.csv", index=False)
 
 # Generate and save sector DataFrame to Excel file
 df_sector = pd.DataFrame(columns=sector_pilihan, index=sector_pilihan)
 np.fill_diagonal(df_sector.values, 1)
-df_sector.to_excel("data/temps/Sector.xlsx")
+df_sector.to_excel("./data/temps/Sector.xlsx")
 
 # Check for incomplete data
 not_eligible = df_alternatives[df_alternatives.apply(lambda x: '-' in x.values or x.isna().any(), axis=1)]['Ticker Code'].tolist()

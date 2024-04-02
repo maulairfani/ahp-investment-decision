@@ -7,7 +7,7 @@ st.markdown(
     "Sektor saham mengacu pada kategori industri tempat suatu perusahaan beroperasi. Beberapa sektor contohnya adalah teknologi, kesehatan, dan finansial. Pentingnya mempertimbangkan sektor dalam memilih saham ada pada fakta bahwa setiap sektor memiliki dinamikanya sendiri yang bisa digunakan untuk memprediksi performa saham di masa mendatang. Misalnya, dalam kondisi ekonomi yang tidak menentu, saham konsumen non-primer cenderung lebih tahan banting dibandingkan yang lain. 🏭📈"
 )
 
-df = pd.read_excel("data/temps/Sector.xlsx", index_col="Unnamed: 0")
+df = pd.read_excel("./data/temps/Sector.xlsx", index_col="Unnamed: 0")
 criterias = df.columns
 np.fill_diagonal(df.values, 1)
 
@@ -102,7 +102,7 @@ for i in range(len(df)):
             df.iloc[i, j] = skala
             df.iloc[j, i] = 1/skala
 
-        df.to_excel("data/temps/Sector.xlsx")
+        df.to_excel("./data/temps/Sector.xlsx")
 
 st.divider()
 st.subheader("Matriks Perbandingan Kriteria")
@@ -111,7 +111,7 @@ st.table(df)
 
 st.subheader("Matriks Nilai Kriteria")
 df_pairwise, ci, ri, cr = process(df)
-df_pairwise.to_excel("data/result/Sector.xlsx")
+df_pairwise.to_excel("./data/result/Sector.xlsx")
 st.table(df_pairwise)
 
 consistency = pd.DataFrame({"Value": [ci, ri, cr]},

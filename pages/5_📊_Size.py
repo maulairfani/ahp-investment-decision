@@ -8,7 +8,7 @@ st.markdown(
     "Ukuran perusahaan sering digunakan sebagai kriteria dalam analisis saham. Perusahaan-perusahaan berukuran besar cenderung lebih stabil dan memiliki akses ke lebih banyak sumber daya dibandingkan perusahaan-perusahaan kecil. Di sisi lain, perusahaan-perusahaan kecil bisa memiliki potensi pertumbuhan yang tinggi. Memahami ukuran perusahaan, oleh karena itu, sangat penting dalam membuat strategi investasi. 🏢📈"
 )
 
-df = pd.read_excel("data/temps/size.xlsx", index_col="Unnamed: 0")
+df = pd.read_excel("./data/temps/size.xlsx", index_col="Unnamed: 0")
 criterias = df.columns
 np.fill_diagonal(df.values, 1)
 
@@ -61,7 +61,7 @@ for i in range(len(df)):
             df.iloc[i, j] = skala
             df.iloc[j, i] = 1/skala
 
-        df.to_excel("data/temps/size.xlsx")
+        df.to_excel("./data/temps/size.xlsx")
 
 st.divider()
 st.subheader("Matriks Perbandingan Kriteria")
@@ -70,7 +70,7 @@ st.table(df)
 
 st.subheader("Matriks Nilai Kriteria")
 df_pairwise, ci, ri, cr = process(df)
-df_pairwise.to_excel("data/result/Size.xlsx")
+df_pairwise.to_excel("./data/result/Size.xlsx")
 st.table(df_pairwise)
 
 consistency = pd.DataFrame({"Value": [ci, ri, cr]},

@@ -8,7 +8,7 @@ st.markdown(
     "Dalam analisis saham, index adalah indikator penting dari tren pasar secara keseluruhan. Indeks saham seperti IDX30, IDX BUMN20, dan LQ45 merangkum kinerja sejumlah perusahaan dalam satu angka tunggal, menyederhanakan proses pemantauan pasar dan membuat perbandingan kinerja antara saham menjadi lebih mudah. Terutama untuk investor pemula, indikator ini dapat membantu mengambil keputusan investasi yang lebih terinformasi. 👩‍💼📊"
 )
 
-df = pd.read_excel("data/temps/index.xlsx", index_col="Unnamed: 0")
+df = pd.read_excel("./data/temps/index.xlsx", index_col="Unnamed: 0")
 criterias = df.columns
 np.fill_diagonal(df.values, 1)
 
@@ -65,7 +65,7 @@ for i in range(len(df)):
             df.iloc[i, j] = skala
             df.iloc[j, i] = 1/skala
 
-        df.to_excel("data/temps/Index.xlsx")
+        df.to_excel("./data/temps/Index.xlsx")
 
 st.divider()
 st.subheader("Matriks Perbandingan Kriteria")
@@ -74,7 +74,7 @@ st.table(df)
 
 st.subheader("Matriks Nilai Kriteria")
 df_pairwise, ci, ri, cr = process(df)
-df_pairwise.to_excel("data/result/Index.xlsx")
+df_pairwise.to_excel("./data/result/Index.xlsx")
 st.table(df_pairwise)
 
 consistency = pd.DataFrame({"Value": [ci, ri, cr]},

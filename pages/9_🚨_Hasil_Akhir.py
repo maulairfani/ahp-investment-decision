@@ -3,14 +3,14 @@ import pandas as pd
 from utils import final_process_ahp
 import plotly.express as px
 
-alternatif = pd.read_csv("data/temps/Alternatives.csv")
-level0 = pd.read_excel("data/result/Level0.xlsx", index_col='Unnamed: 0')
-sector = pd.read_excel("data/result/Sector.xlsx", index_col='Unnamed: 0')
-index = pd.read_excel("data/result/Index.xlsx", index_col='Unnamed: 0')
-size = pd.read_excel("data/result/Size.xlsx", index_col='Unnamed: 0')
-quality = pd.read_excel("data/result/Quality.xlsx", index_col='Unnamed: 0')
-value = pd.read_excel("data/result/Value.xlsx", index_col='Unnamed: 0')
-growth = pd.read_excel("data/result/Growth.xlsx", index_col='Unnamed: 0')
+alternatif = pd.read_csv("./data/temps/Alternatives.csv")
+level0 = pd.read_excel("./data/result/Level0.xlsx", index_col='Unnamed: 0')
+sector = pd.read_excel("./data/result/Sector.xlsx", index_col='Unnamed: 0')
+index = pd.read_excel("./data/result/Index.xlsx", index_col='Unnamed: 0')
+size = pd.read_excel("./data/result/Size.xlsx", index_col='Unnamed: 0')
+quality = pd.read_excel("./data/result/Quality.xlsx", index_col='Unnamed: 0')
+value = pd.read_excel("./data/result/Value.xlsx", index_col='Unnamed: 0')
+growth = pd.read_excel("./data/result/Growth.xlsx", index_col='Unnamed: 0')
 
 col_size = ['Market Cap', 'Enterprise Value', 'Current Share Outstanding']
 col_quality = ['Return on Equity (TTM)', 'Net Profit Margin (TTM)(%)', 'Current Ratio (Quarter)', 'Debt to Equity Ratio (Quarter)']
@@ -155,7 +155,7 @@ df_ranking = df_final.copy()
 df_ranking = df_final[["Ticker Code", "Total"]]
 df_ranking.columns = ["Ticker Code", "Total Score"]
 
-alternatif2 = pd.read_csv("data/temps/Alternatives.csv")
+alternatif2 = pd.read_csv("./data/temps/Alternatives.csv")
 temp = pd.merge(alternatif2, df_ranking, on="Ticker Code", how="inner").sort_values("Total Score", ascending=False)
 
 st.subheader("Saham Terbaik: {}🏆🏆".format(temp["Ticker Code"].iloc[0]))

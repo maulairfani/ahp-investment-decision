@@ -8,7 +8,7 @@ st.markdown(
     "Value mengacu pada sejauh mana harga saham mencerminkan nilai sebenarnya dari perusahaan. Dalam mencari value, investor mencoba menemukan saham-saham yang dihargai kurang dari nilai intrinsiknya. Sejumlah rasio keuangan digunakan untuk menilai value, seperti rasio P/E, P/B, dan dividen yield.🏦💰"
 )
 
-df = pd.read_excel("data/temps/value.xlsx", index_col="Unnamed: 0")
+df = pd.read_excel("./data/temps/value.xlsx", index_col="Unnamed: 0")
 criterias = df.columns
 np.fill_diagonal(df.values, 1)
 
@@ -59,7 +59,7 @@ for i in range(len(df)):
             df.iloc[i, j] = skala
             df.iloc[j, i] = 1/skala
 
-        df.to_excel("data/temps/value.xlsx")
+        df.to_excel("./data/temps/value.xlsx")
 
 st.divider()
 st.subheader("Matriks Perbandingan Kriteria")
@@ -68,7 +68,7 @@ st.table(df)
 
 st.subheader("Matriks Nilai Kriteria")
 df_pairwise, ci, ri, cr = process(df)
-df_pairwise.to_excel("data/result/Value.xlsx")
+df_pairwise.to_excel("./data/result/Value.xlsx")
 st.table(df_pairwise)
 
 consistency = pd.DataFrame({"Value": [ci, ri, cr]},

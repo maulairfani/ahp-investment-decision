@@ -8,7 +8,7 @@ st.markdown(
     "Quality mengacu pada sejauh mana sebuah perusahaan dapat diandalkan untuk menghasilkan laba yang stabil dan pertumbuhan di masa mendatang. Perusahaan-perusahaan berkualitas biasanya memiliki keunggulan kompetitif, seperti merek yang kuat atau teknologi inovatif, serta manajemen yang efisien dan etis. Dalam analisis saham, kualitas perusahaan sering ditentukan oleh sejumlah rasio keuangan.✨💰"
 )
 
-df = pd.read_excel("data/temps/quality.xlsx", index_col="Unnamed: 0")
+df = pd.read_excel("./data/temps/quality.xlsx", index_col="Unnamed: 0")
 criterias = df.columns
 np.fill_diagonal(df.values, 1)
 
@@ -65,7 +65,7 @@ for i in range(len(df)):
             df.iloc[i, j] = skala
             df.iloc[j, i] = 1/skala
 
-        df.to_excel("data/temps/quality.xlsx")
+        df.to_excel("./data/temps/quality.xlsx")
 
 st.divider()
 st.subheader("Matriks Perbandingan Kriteria")
@@ -74,7 +74,7 @@ st.table(df)
 
 st.subheader("Matriks Nilai Kriteria")
 df_pairwise, ci, ri, cr = process(df)
-df_pairwise.to_excel("data/result/Quality.xlsx")
+df_pairwise.to_excel("./data/result/Quality.xlsx")
 st.table(df_pairwise)
 
 consistency = pd.DataFrame({"Value": [ci, ri, cr]},

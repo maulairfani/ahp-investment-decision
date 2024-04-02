@@ -8,7 +8,7 @@ st.markdown(
     "Growth atau pertumbuhan adalah salah satu faktor yang paling sering dicari oleh investor dalam memilih saham. Perusahaan-perusahaan dengan prospek pertumbuhan yang kuat cenderung mampu menghasilkan keuntungan yang bertambah seiring waktu, yang pada akhirnya bisa meningkatkan harga saham.💹🚀"
 )
 
-df = pd.read_excel("data/temps/Growth.xlsx", index_col="Unnamed: 0")
+df = pd.read_excel("./data/temps/Growth.xlsx", index_col="Unnamed: 0")
 criterias = df.columns
 np.fill_diagonal(df.values, 1)
 
@@ -54,7 +54,7 @@ for i in range(len(df)):
             df.iloc[i, j] = skala
             df.iloc[j, i] = 1/skala
 
-        df.to_excel("data/temps/Growth.xlsx")
+        df.to_excel("./data/temps/Growth.xlsx")
 
 st.divider()
 st.subheader("Matriks Perbandingan Kriteria")
@@ -63,7 +63,7 @@ st.table(df)
 
 st.subheader("Matriks Nilai Kriteria")
 df_pairwise, ci, ri, cr = process(df)
-df_pairwise.to_excel("data/result/Growth.xlsx")
+df_pairwise.to_excel("./data/result/Growth.xlsx")
 st.table(df_pairwise)
 
 consistency = pd.DataFrame({"Value": [ci, ri, cr]},
