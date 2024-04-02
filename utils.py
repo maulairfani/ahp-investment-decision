@@ -165,9 +165,14 @@ def final_process_ahp(df):
     df["Net Profit Margin (TTM)(%)"] = df["Net Profit Margin (TTM)(%)"].apply(lambda x: float(x[:-1].replace(",", "")))
     df["Return on Equity (TTM)"] = df["Return on Equity (TTM)"].apply(lambda x: float(x[:-1].replace(",", "")))
 
+    # Debt to Equity Ratio (Quarter), Current Price to Book Value, Current PE Ratio (TTM), Current Price To Free Cashflow (TTM)
+    negatif = ["Debt to Equity Ratio (Quarter)", "Current Price to Book Value", "Current PE Ratio (TTM)", "Current Price To Free Cashflow (TTM)"]
+    df[negatif] = df[negatif] * - 1
+    
     scaler = MinMaxScaler(feature_range=(1e-3, 1))
     float_columns = df.select_dtypes("float").columns
     df[float_columns] = scaler.fit_transform(df[float_columns])
+
 
     df['Sector'] = df['Sector'].map(sector['Prioritas'].to_dict())
     df['Index'] = df['Index'].map(index['Prioritas'].to_dict())

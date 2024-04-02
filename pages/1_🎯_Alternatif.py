@@ -72,6 +72,7 @@ df_sector.to_excel("./data/temps/Sector.xlsx")
 not_eligible = df_alternatives[df_alternatives.apply(lambda x: '-' in x.values or x.isna().any(), axis=1)]['Ticker Code'].tolist()
 
 st.write(df_alternatives)
+st.write(df_alternatives.columns)
 
 # Show message based on data completeness
 if not_eligible:
