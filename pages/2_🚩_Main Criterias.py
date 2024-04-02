@@ -4,24 +4,42 @@ import numpy as np
 from utils import process
 
 st.title("Kriteria Utama🚩")
-st.markdown("This is the Economic Sector according to the Thomson Reuters Business Classification Schema (TRBC). There are 10 economic sectors in the schema which classify stocks across broad economic segments such as Technology and Financials.")
-
+st.markdown("Berikut adalah penjelasan faktor-faktor utama yang kami pertimbangkan dalam sistem dukungan keputusan kami untuk membantu Anda menentukan saham terbaik. Kami menggunakan metode 'Analytical Hierarchy Process' (AHP) dan mempertimbangkan faktor-faktor berikut : **Sector**, **Index**, **Size**, **Quality**, **Value** dan **Growth**. Masing-masing faktor memiliki peran dan pertimbangan yang berbeda yang secara keseluruhan akan memberikan penilaian dan rekomendasi terbaik untuk Anda.")
 df = pd.read_excel("data/temps/level0.xlsx", index_col="Unnamed: 0")
 criterias = df.columns
 np.fill_diagonal(df.values, 1)
 
 st.subheader("Penjelasan Kriteria")
-with st.expander("LQ45"):
-    st.markdown("LQ45 adalah indeks yang terdiri dari 45 saham dengan likuiditas (volume perdagangan) tertinggi di Bursa Efek Indonesia (BEI). Saham-saham yang masuk dalam indeks LQ45 dipilih berdasarkan kriteria likuiditas, kapitalisasi pasar, dan frekuensi perdagangan. Indeks ini sering digunakan sebagai acuan untuk mengukur kinerja pasar saham secara keseluruhan.")
-    
-with st.expander("IDX30"):
-    st.markdown("IDX30 adalah indeks yang terdiri dari 30 saham unggulan di BEI. Saham-saham yang termasuk dalam indeks IDX30 dipilih berdasarkan kriteria kapitalisasi pasar, likuiditas, dan kinerja keuangan perusahaan. Indeks ini bertujuan untuk merepresentasikan kinerja saham-saham terbaik di pasar modal Indonesia.")
+with st.expander("Sector"):
+    st.markdown(
+    "Sektor saham mengacu pada kategori industri tempat suatu perusahaan beroperasi. Beberapa sektor contohnya adalah teknologi, kesehatan, dan finansial. Pentingnya mempertimbangkan sektor dalam memilih saham ada pada fakta bahwa setiap sektor memiliki dinamikanya sendiri yang bisa digunakan untuk memprediksi performa saham di masa mendatang. Misalnya, dalam kondisi ekonomi yang tidak menentu, saham konsumen non-primer cenderung lebih tahan banting dibandingkan yang lain. 🏭📈"
+    )
 
-with st.expander("IDXHIDIV20"):
-    st.markdown("IDXHIDIV20 adalah indeks yang terdiri dari 20 saham dengan dividen tertinggi di BEI. Saham-saham yang masuk dalam indeks IDXHIDIV20 dipilih berdasarkan tingginya tingkat dividen yang dibagikan kepada pemegang saham. Indeks ini memberikan gambaran tentang saham-saham yang memiliki kecenderungan untuk memberikan dividen yang stabil dan tinggi.")
+with st.expander("Index"):
+    st.markdown(
+    "Dalam analisis saham, index adalah indikator penting dari tren pasar secara keseluruhan. Indeks saham seperti IDX30, IDX BUMN20, dan LQ45 merangkum kinerja sejumlah perusahaan dalam satu angka tunggal, menyederhanakan proses pemantauan pasar dan membuat perbandingan kinerja antara saham menjadi lebih mudah. Terutama untuk investor pemula, indikator ini dapat membantu mengambil keputusan investasi yang lebih terinformasi. 👩‍💼📊"
+    )
 
-with st.expander("IDXBUMN20"):
-    st.markdown("IDXBUMN20 adalah indeks yang terdiri dari 20 saham dari perusahaan Badan Usaha Milik Negara (BUMN) yang terdaftar di BEI. Saham-saham yang termasuk dalam indeks IDXBUMN20 berasal dari perusahaan-perusahaan yang dimiliki oleh pemerintah Indonesia. Indeks ini memberikan gambaran tentang kinerja saham-saham BUMN yang merupakan bagian penting dari ekonomi Indonesia.")
+with st.expander("Size"):
+    st.markdown(
+    "Ukuran perusahaan sering digunakan sebagai kriteria dalam analisis saham. Perusahaan-perusahaan berukuran besar cenderung lebih stabil dan memiliki akses ke lebih banyak sumber daya dibandingkan perusahaan-perusahaan kecil. Di sisi lain, perusahaan-perusahaan kecil bisa memiliki potensi pertumbuhan yang tinggi. Memahami ukuran perusahaan, oleh karena itu, sangat penting dalam membuat strategi investasi. 🏢📈"
+    )
+
+with st.expander("Quality"):
+    st.markdown(
+    "Quality mengacu pada sejauh mana sebuah perusahaan dapat diandalkan untuk menghasilkan laba yang stabil dan pertumbuhan di masa mendatang. Perusahaan-perusahaan berkualitas biasanya memiliki keunggulan kompetitif, seperti merek yang kuat atau teknologi inovatif, serta manajemen yang efisien dan etis. Dalam analisis saham, kualitas perusahaan sering ditentukan oleh sejumlah rasio keuangan.✨💰"
+    )
+
+with st.expander("Value"):
+    st.markdown(
+    "Value mengacu pada sejauh mana harga saham mencerminkan nilai sebenarnya dari perusahaan. Dalam mencari value, investor mencoba menemukan saham-saham yang dihargai kurang dari nilai intrinsiknya. Sejumlah rasio keuangan digunakan untuk menilai value, seperti rasio P/E, P/B, dan dividen yield.🏦💰"
+    )
+
+with st.expander("Growth"):
+    st.markdown(
+    "Growth atau pertumbuhan adalah salah satu faktor yang paling sering dicari oleh investor dalam memilih saham. Perusahaan-perusahaan dengan prospek pertumbuhan yang kuat cenderung mampu menghasilkan keuntungan yang bertambah seiring waktu, yang pada akhirnya bisa meningkatkan harga saham.💹🚀"
+    )
+
 
 
 st.divider()
