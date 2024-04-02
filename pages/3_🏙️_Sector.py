@@ -9,7 +9,7 @@ st.markdown(
     "Sektor saham mengacu pada kategori industri tempat suatu perusahaan beroperasi. Beberapa sektor contohnya adalah teknologi, kesehatan, dan finansial. Pentingnya mempertimbangkan sektor dalam memilih saham ada pada fakta bahwa setiap sektor memiliki dinamikanya sendiri yang bisa digunakan untuk memprediksi performa saham di masa mendatang. Misalnya, dalam kondisi ekonomi yang tidak menentu, saham konsumen non-primer cenderung lebih tahan banting dibandingkan yang lain. 🏭📈"
 )
 
-print(os.listdir("./data/temps/"))
+st.write(os.listdir("./data/temps/"))
 
 df = pd.read_excel("./data/temps/Sector.xlsx", index_col="Unnamed: 0")
 criterias = df.columns
